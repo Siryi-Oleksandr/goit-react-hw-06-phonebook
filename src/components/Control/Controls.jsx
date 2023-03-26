@@ -1,17 +1,13 @@
 import PropTypes from 'prop-types';
 import { ControlWrapper, Button } from 'components/Control/Controls.styled';
-import { useDispatch } from 'react-redux';
-import { deleteContact } from '../../redux/contactsSlice';
 
-export const Controls = ({ id }) => {
-  const dispatch = useDispatch();
-
+export const Controls = ({ id, onDeleteContact, onEditContact }) => {
   return (
     <ControlWrapper>
-      <Button type="button" onClick={() => console.log('😎')}>
+      <Button type="button" onClick={onEditContact}>
         Edit
       </Button>
-      <Button type="button" onClick={() => dispatch(deleteContact(id))}>
+      <Button type="button" onClick={() => onDeleteContact(id)}>
         Delete
       </Button>
     </ControlWrapper>
@@ -31,6 +27,8 @@ export const ControlsSave = ({ id, onDeleteContact }) => {
 
 Controls.propTypes = {
   id: PropTypes.string.isRequired,
+  onDeleteContact: PropTypes.func.isRequired,
+  onEditContact: PropTypes.func.isRequired,
 };
 
 ControlsSave.propTypes = {

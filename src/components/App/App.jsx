@@ -64,9 +64,9 @@ function App() {
       <h2>Contacts</h2>
       <Filter value={filter} onChange={changeFilter} />
       <ContactList
-        contacts={filterList()}
-        onDeleteContact={deleteContact}
-        onEditContact={editContact}
+      // contacts={filterList()}
+      // onDeleteContact={deleteContact}
+      // onEditContact={editContact}
       />
 
       <Toaster
