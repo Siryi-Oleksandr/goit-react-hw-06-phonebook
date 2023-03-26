@@ -11,26 +11,26 @@ import {
 import { Controls, ControlsSave } from 'components/Control/Controls';
 import EditForm from 'components/EditForm';
 
-function ContactItem({ name, number, id, onDeleteContact, onEditContact }) {
-  const [editName, setEditName] = useState(name);
-  const [editNumber, setEditNumber] = useState(number);
+function ContactItem({ name, number, id }) {
+  // const [editName, setEditName] = useState(name);
+  // const [editNumber, setEditNumber] = useState(number);
   const [isEdit, setIsEdit] = useState(false);
 
-  const handleEditContact = (newName, newNumber) => {
-    if (!isEdit) {
-      setIsEdit(true);
-    } else {
-      setEditName(prevName => (newName ? newName : prevName));
-      setEditNumber(prevNumber => (newNumber ? newNumber : prevNumber));
-      setIsEdit(false);
+  // const handleEditContact = (newName, newNumber) => {
+  //   if (!isEdit) {
+  //     setIsEdit(true);
+  //   } else {
+  //     setEditName(prevName => (newName ? newName : prevName));
+  //     setEditNumber(prevNumber => (newNumber ? newNumber : prevNumber));
+  //     setIsEdit(false);
 
-      onEditContact({
-        id: id,
-        name: newName ? newName : name,
-        number: newNumber ? newNumber : number,
-      });
-    }
-  };
+  //     onEditContact({
+  //       id: id,
+  //       name: newName ? newName : name,
+  //       number: newNumber ? newNumber : number,
+  //     });
+  //   }
+  // };
 
   return (
     <Item>
@@ -40,18 +40,18 @@ function ContactItem({ name, number, id, onDeleteContact, onEditContact }) {
         <ContactInfo>
           <ContactName>
             <HiUser />
-            {editName}:
+            {name}:
           </ContactName>
 
           <ContactTel>
             <ImPhone />
-            {editNumber}
+            {number}
           </ContactTel>
         </ContactInfo>
       )}
 
       {/* if contact is edit show edit form */}
-      {isEdit && (
+      {/* {isEdit && (
         <EditForm
           name={editName}
           number={editNumber}
@@ -59,15 +59,9 @@ function ContactItem({ name, number, id, onDeleteContact, onEditContact }) {
         >
           <ControlsSave id={id} onDeleteContact={onDeleteContact} />
         </EditForm>
-      )}
+      )} */}
 
-      {!isEdit && (
-        <Controls
-          id={id}
-          onDeleteContact={onDeleteContact}
-          onEditContact={handleEditContact}
-        />
-      )}
+      {!isEdit && <Controls id={id} />}
     </Item>
   );
 }
@@ -76,8 +70,6 @@ ContactItem.propTypes = {
   name: PropTypes.string.isRequired,
   number: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  onDeleteContact: PropTypes.func.isRequired,
-  onEditContact: PropTypes.func.isRequired,
 };
 
 export default ContactItem;
