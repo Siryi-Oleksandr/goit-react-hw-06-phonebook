@@ -25,12 +25,3 @@ export const contactsSlice = createSlice({
 
 export const contactsReducer = contactsSlice.reducer;
 export const { addContact, deleteContact, editContact } = contactsSlice.actions;
-
-//  [addContact]: (state, action) => {
-//     state.push(action.payload);
-//   },
-//   [deleteContact]: (state, action) => {
-//     const index = state.findIndex(contact => contact.id === action.payload);
-//     state.splice(index, 1);
-//   },
-//   [editContact]: (state, action) => state,
