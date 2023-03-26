@@ -1,11 +1,9 @@
 import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { filterContacts } from 'redux/filterSlice';
-import { getFilter } from 'redux/selectors';
 import { FilterLabel, Input } from './Filter.styled';
 
 function Filter() {
-  const filter = useSelector(getFilter);
   const dispatch = useDispatch();
 
   const handleSetFilter = evt => {
@@ -26,15 +24,3 @@ Filter.propTypes = {
 };
 
 export default Filter;
-
-// const filterList = () => {
-//   const normalizedFilter = filter.toLocaleLowerCase();
-//   const visibleContacts = contacts.filter(contact =>
-//     contact.name.toLocaleLowerCase().includes(normalizedFilter)
-//   );
-//   return visibleContacts;
-// };
-
-// const changeFilter = evt => {
-//   setFilter(evt.currentTarget.value);
-// };
