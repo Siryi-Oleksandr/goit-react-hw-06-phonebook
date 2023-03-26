@@ -1,13 +1,17 @@
 import PropTypes from 'prop-types';
 import { ControlWrapper, Button } from 'components/Control/Controls.styled';
+import { useDispatch } from 'react-redux';
+import { deleteContact } from '../../redux/actions';
 
 export const Controls = ({ id }) => {
+  const dispatch = useDispatch();
+
   return (
     <ControlWrapper>
       <Button type="button" onClick={() => console.log('😎')}>
         Edit
       </Button>
-      <Button type="button" onClick={() => console.log('😍')}>
+      <Button type="button" onClick={() => dispatch(deleteContact(id))}>
         Delete
       </Button>
     </ControlWrapper>
