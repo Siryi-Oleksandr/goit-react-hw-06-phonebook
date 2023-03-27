@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { HiUser } from 'react-icons/hi';
 import { ImPhone } from 'react-icons/im';
@@ -11,7 +12,6 @@ import {
 import { Controls, ControlsSave } from 'components/Control/Controls';
 import EditForm from 'components/EditForm';
 import { editContact, deleteContact } from '../../redux/contactsSlice';
-import { useDispatch } from 'react-redux';
 
 function ContactItem({ name, number, id }) {
   const [editName, setEditName] = useState(name);
@@ -47,17 +47,24 @@ function ContactItem({ name, number, id }) {
       {/* if contact saved show contact info */}
 
       {!isEdit && (
-        <ContactInfo>
-          <ContactName>
-            <HiUser />
-            {name}:
-          </ContactName>
+        <>
+          <ContactInfo>
+            <ContactName>
+              <HiUser />
+              {name}:
+            </ContactName>
 
-          <ContactTel>
-            <ImPhone />
-            {number}
-          </ContactTel>
-        </ContactInfo>
+            <ContactTel>
+              <ImPhone />
+              {number}
+            </ContactTel>
+          </ContactInfo>
+          <Controls
+            id={id}
+            onDeleteContact={handleDeleteContact}
+            onEditContact={handleEditContact}
+          />
+        </>
       )}
 
       {/* if contact is edit show edit form */}
@@ -69,14 +76,6 @@ function ContactItem({ name, number, id }) {
         >
           <ControlsSave id={id} onDeleteContact={handleDeleteContact} />
         </EditForm>
-      )}
-
-      {!isEdit && (
-        <Controls
-          id={id}
-          onDeleteContact={handleDeleteContact}
-          onEditContact={handleEditContact}
-        />
       )}
     </Item>
   );
